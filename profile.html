@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile | Freedom Almanac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500,1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css?v=mobile2" />
+</head>
+<body>
+  <aside class="sidebar">
+
+    <section class="sidebar-section">
+      <h3>Your Delegation</h3>
+
+      <div id="sidebar-delegation-container">
+        <p class="muted">No address set.</p>
+      </div>
+    </section>
+  </aside>
+
+  <header class="app-header">
+    <div class="header-brand">
+      <h1>Freedom Almanac</h1>
+      <p class="tagline">WHAT DID THEY DO. HOW DOES IT AFFECT YOU.</p>
+    </div>
+
+    <nav class="header-nav">
+      <button id="nav-home" class="nav-btn" type="button">
+        Today
+      </button>
+
+      <button id="nav-delegates" class="nav-btn" type="button">
+        Find Delegates
+      </button>
+
+      <button id="nav-contact" class="nav-btn" type="button">
+        Contact
+      </button>
+
+      <button id="nav-profile" class="nav-btn active" type="button">
+        Profile
+      </button>
+
+      <button id="nav-bills" class="nav-btn" type="button">
+        Bills
+      </button>
+	  
+	  	  <button id="nav-votes" class="nav-btn" type="button">Votes</button>
+		  
+
+      <button id="nav-committees" class="nav-btn" type="button">
+        Committees
+      </button>
+    </nav>
+  </header>
+
+  <main id="app-main">
+    <section class="profile-page">
+      <div class="page-heading">
+        <p class="eyebrow">Your Freedom Almanac</p>
+        <h1>Your Profile and Preferences</h1>
+        <p>
+          Manage what Freedom Almanac follows and how it personalizes your
+          congressional briefing.
+        </p>
+      </div>
+
+      <nav class="profile-tabs" aria-label="Profile settings">
+        <button class="profile-tab active" data-panel="overview" type="button">
+          Overview
+        </button>
+
+        <button class="profile-tab" data-panel="watchlist" type="button">
+          Watchlist
+        </button>
+
+        <button class="profile-tab" data-panel="notifications" type="button">
+          Notifications
+        </button>
+
+        <button class="profile-tab" data-panel="privacy" type="button">
+          Privacy
+        </button>
+      </nav>
+
+      <section id="profile-panel-overview" class="profile-panel">
+	  
+	  <article class="profile-card account-card">
+  <p class="eyebrow">Your account</p>
+  <h2>Sign in to Freedom Almanac</h2>
+
+  <div id="account-loading">
+    <p class="small-note">Checking sign-in status…</p>
+  </div>
+
+  <div id="account-signed-out" class="hidden">
+    <p class="profile-copy">
+      Enter your email to receive a verification code.
+      New here? Your account will be created when you verify.
+      No password is needed.
+    </p>
+
+    <form id="account-email-form" class="account-form">
+      <label for="account-email">Email address</label>
+
+      <input
+        id="account-email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        required
+      />
+
+      <button
+        id="account-send-code"
+        class="primary-button"
+        type="submit"
+      >
+        Send Sign-in Code
+      </button>
+    </form>
+
+    <form
+      id="account-code-form"
+      class="account-form hidden"
+    >
+      <p id="account-code-destination" class="small-note"></p>
+
+      <label for="account-code">Verification code</label>
+
+      <input
+        id="account-code"
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        placeholder="Enter the emailed code"
+        required
+      />
+
+      <div class="account-actions">
+        <button
+          id="account-verify-code"
+          class="primary-button"
+          type="submit"
+        >
+          Verify and Sign In
+        </button>
+
+        <button
+          id="account-change-email"
+          class="secondary-button"
+          type="button"
+        >
+          Use a Different Email
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div id="account-signed-in" class="hidden">
+    <p>
+      Signed in as <span id="account-user-email"></span>
+    </p>
+
+    <p class="small-note">
+      Your watchlist merges automatically when you sign in.
+      Account notification preferences remain saved to your account.
+    </p>
+
+    <button
+      id="account-sign-out"
+      class="secondary-button"
+      type="button"
+    >
+      Sign Out
+    </button>
+  </div>
+  <div class="account-sync-controls">
+
+  <p
+    id="account-sync-status"
+    class="small-note"
+    role="status"
+    aria-live="polite"
+  ></p>
+</div>
+
+  <p
+    id="account-status"
+    class="small-note"
+    role="status"
+    aria-live="polite"
+  ></p>
+</article>
+        <article class="profile-card">
+          <p class="eyebrow">Your saved location</p>
+          <h2>Your Delegation</h2>
+
+          <p id="profile-location-summary" class="profile-summary">
+            Loading saved location…
+          </p>
+
+          <div id="profile-delegation-list" class="profile-delegation-list">
+            <p class="small-note">
+              Set your address to see your senators and representative.
+            </p>
+          </div>
+
+          <button id="change-address-btn" class="secondary-button" type="button">
+            Change Address
+          </button>
+        </article>
+
+        
+      </section>
+
+      <section id="profile-panel-watchlist" class="profile-panel hidden">
+  <article class="profile-card">
+    <div class="profile-card-heading">
+      <div>
+        <p class="eyebrow">Your priorities</p>
+        <h2>Watchlist</h2>
+      </div>
+
+      <span id="watchlist-count" class="watchlist-count">0 items</span>
+    </div>
+
+    <p class="profile-copy">
+      Save bills and committees you want to keep an eye on. Watchlist items
+      will later be prioritized in your updates and notifications.
+    </p>
+
+    <div id="watchlist-container" class="watchlist-list">
+      <article class="card">
+        <p class="small-note">Your watchlist is empty.</p>
+        <p class="small-note">
+          Add a bill from the Bills page or a committee from the Committees page.
+        </p>
+      </article>
+    </div>
+  </article>
+</section>
+
+
+      <section id="profile-panel-notifications" class="profile-panel hidden">
+  <article class="profile-card">
+    <div class="profile-card-heading">
+      <div>
+        <p class="eyebrow">Your scheduled congressional update</p>
+        <h2>Notifications</h2>
+      </div>
+
+      <span class="notification-price">$1/month or $10/year</span>
+    </div>
+
+        <p class="profile-copy">
+      Receive scheduled email digests containing saved information
+      about your watchlist bills. Optionally include the latest
+      congressional briefing and upcoming congressional schedule.
+    </p>
+
+    <div class="notification-notice">
+      <p>
+        Monthly: $1/month.
+        Annual: $10/year — save $2 compared with monthly billing.
+        Both plans include the same digest features.
+      </p>
+
+      <p class="small-note">
+        Sandbox testing: checkout uses test payments.
+        No real money is charged.
+      </p>
+
+      <div class="notification-field">
+        <label for="notification-subscription-plan">
+          Subscription plan
+        </label>
+
+        <select id="notification-subscription-plan">
+          <option value="annual" selected>
+            $10/year — save $2
+          </option>
+
+          <option value="monthly">
+            $1/month
+          </option>
+        </select>
+      </div>
+
+      <p
+        id="notification-billing-status"
+        class="small-note"
+        role="status"
+        aria-live="polite"
+      >
+        Checking subscription…
+      </p>
+
+      
+    </div>
+
+    <form id="notification-preferences-form" class="notification-form">
+      <fieldset class="notification-fieldset">
+        <legend>1. How should we notify you?</legend>
+
+        <div class="notification-options">
+          <label class="notification-choice">
+            <input
+              type="radio"
+              name="delivery"
+              value="email"
+              checked
+            />
+            <span>Email</span>
+          </label>
+
+          <label class="notification-choice">
+                        <input
+              type="radio"
+              name="delivery"
+              value="sms"
+              disabled
+            />
+            <span>Text message — not available yet</span>
+           
+          </label>
+        </div>
+
+        <div id="notification-email-fields" class="notification-field">
+          <label for="notification-email">Email address</label>
+          <input
+            id="notification-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div
+          id="notification-phone-fields"
+          class="notification-field hidden"
+        >
+          <label for="notification-phone">Mobile number</label>
+          <input
+            id="notification-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="+14065551234"
+            aria-describedby="notification-phone-help"
+            disabled
+          />
+
+          <small id="notification-phone-help">
+            Include the country code, such as +1 for a U.S. number.
+            Texts will contain a short update and a link to the full digest.
+          </small>
+        </div>
+      </fieldset>
+
+      <fieldset class="notification-fieldset">
+        <legend>2. When should we send it?</legend>
+
+        <div class="notification-field">
+          <label for="notification-frequency">Frequency</label>
+          <select id="notification-frequency" name="frequency">
+            <option value="daily">Every day</option>
+            <option value="weekly">Once a week</option>
+            <option value="custom">Specific days</option>
+          </select>
+        </div>
+
+        <div
+          id="notification-weekly-fields"
+          class="notification-field hidden"
+        >
+          <label for="notification-weekday">Delivery day</label>
+          <select id="notification-weekday" name="weekday" disabled>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+            <option value="0">Sunday</option>
+          </select>
+        </div>
+
+        <fieldset
+          id="notification-custom-fields"
+          class="notification-days-fieldset hidden"
+          disabled
+        >
+          <legend>Select delivery days</legend>
+
+          <div class="notification-days">
+            <label><input type="checkbox" name="days" value="1" /> Mon</label>
+            <label><input type="checkbox" name="days" value="2" /> Tue</label>
+            <label><input type="checkbox" name="days" value="3" /> Wed</label>
+            <label><input type="checkbox" name="days" value="4" /> Thu</label>
+            <label><input type="checkbox" name="days" value="5" /> Fri</label>
+            <label><input type="checkbox" name="days" value="6" /> Sat</label>
+            <label><input type="checkbox" name="days" value="0" /> Sun</label>
+          </div>
+        </fieldset>
+
+        <div class="notification-time-grid">
+          <div class="notification-field">
+            <label for="notification-time">Delivery time</label>
+            <input
+              id="notification-time"
+              name="time"
+              type="time"
+              value="08:00"
+              required
+            />
+          </div>
+
+          <div class="notification-field">
+            <label for="notification-timezone">Time zone</label>
+            <select
+              id="notification-timezone"
+              name="timeZone"
+              required
+            ></select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="notification-fieldset">
+        <legend>3. What should we include?</legend>
+
+        <div class="notification-included">
+          <h3>Watchlist bill updates — included</h3>
+          <p>
+                        Latest saved information for up to 10 of your most
+            recently added watchlist bills. This is not limited
+            to changes since your previous email.
+          </p>
+        </div>
+
+        <label class="notification-content-option">
+          <input
+            id="notification-include-briefing"
+            name="includeBriefing"
+            type="checkbox"
+          />
+          <span>
+            <span class="notification-option-title">Today’s Briefing</span>
+            <small>Include the latest available congressional briefing.</small>
+          </span>
+        </label>
+
+        <label class="notification-content-option">
+          <input
+            id="notification-include-schedule"
+            name="includeSchedule"
+            type="checkbox"
+          />
+          <span>
+            <span class="notification-option-title">Upcoming schedule</span>
+            <small>Include upcoming congressional meetings and events.</small>
+          </span>
+        </label>
+
+        <p class="small-note">
+                    Add at least one watchlist bill or select an optional
+          section so your digest has content. Committee watchlist
+          digests are not included yet.
+        </p>
+      </fieldset>
+
+      <div class="notification-actions">
+        <button class="secondary-button" type="submit">
+          Save Notification Preferences
+        </button>
+
+        <button
+          id="notification-subscribe-button"
+          class="primary-button"
+          type="button"
+          disabled
+          aria-describedby="notification-subscription-help"
+        >
+                    Subscribe — $10/year
+        </button>
+      </div>
+
+      <p id="notification-subscription-help" class="small-note">
+        Saving preferences does not start a subscription or authorize a charge.
+      </p>
+
+      <p
+        id="notification-status"
+        class="small-note"
+        role="status"
+        aria-live="polite"
+      ></p>
+    </form>
+  </article>
+</section>
+
+      <section id="profile-panel-privacy" class="profile-panel hidden">
+        <article class="profile-card">
+          <p class="eyebrow">Stored in this browser</p>
+          <h2>Privacy & Data</h2>
+
+          <p class="profile-copy">
+  Freedom Almanac currently stores your address-derived location,
+  delegation, watchlist, and preferences in this browser.
+  If you save notification preferences, your entered email address
+  or mobile number is also stored here. These preferences do not
+  activate a subscription or notification delivery.
+</p>
+
+          <button id="clear-profile-data-btn" class="danger-button" type="button">
+            Clear Local Profile Data
+          </button>
+
+          <p id="privacy-status" class="small-note"></p>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="profile.js"></script>
+</body>
+</html>

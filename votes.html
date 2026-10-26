@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Votes | Freedom Almanac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css?v=mobile2" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="header-brand">
+      <h1>Freedom Almanac</h1>
+      <p class="tagline">WHAT DID THEY DO. HOW DOES IT AFFECT YOU.</p>
+    </div>
+
+    <nav class="header-nav" aria-label="Main navigation">
+      <button id="nav-home" class="nav-btn" type="button">Today</button>
+
+      <button id="nav-delegates" class="nav-btn" type="button">
+        Find Delegates
+      </button>
+
+      <button id="nav-contact" class="nav-btn" type="button">
+        Contact
+      </button>
+
+      <button id="nav-profile" class="nav-btn" type="button">
+        Profile
+      </button>
+
+      <button id="nav-bills" class="nav-btn" type="button">Bills</button>
+
+      <button id="nav-votes" class="nav-btn active" type="button">
+        Votes
+      </button>
+
+      <button id="nav-committees" class="nav-btn" type="button">
+        Committees
+      </button>
+    </nav>
+  </header>
+
+  <main id="app-main">
+    <section id="votes-screen" class="screen">
+      <div class="briefing-header">
+        <p class="eyebrow">119th Congress</p>
+        <h2>Votes</h2>
+        <p>
+          Browse recent House and Senate roll-call votes. Expand any vote to
+          see how individual members voted.
+        </p>
+      </div>
+
+      <section class="section" aria-labelledby="votes-heading">
+        <div class="section-heading">
+          <div>
+            <h3 id="votes-heading">Recent votes</h3>
+
+            <p id="vote-count" class="small-muted">
+              Loading recent votes…
+            </p>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="Filter votes by chamber">
+          <button
+            class="filter-button active"
+            type="button"
+            data-chamber="all"
+          >
+            All
+          </button>
+
+          <button
+            class="filter-button"
+            type="button"
+            data-chamber="house"
+          >
+            House
+          </button>
+
+          <button
+            class="filter-button"
+            type="button"
+            data-chamber="senate"
+          >
+            Senate
+          </button>
+        </div>
+
+        <div id="vote-list" class="vote-list" aria-live="polite">
+          <article class="card">
+            <p>Loading recent votes…</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="votes.js"></script>
+</body>
+</html>

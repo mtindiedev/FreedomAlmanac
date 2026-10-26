@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Committees | Freedom Almanac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="styles.css?v=mobile2" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="header-brand">
+      <h1>Freedom Almanac</h1>
+      <p class="tagline">WHAT DID THEY DO. HOW DOES IT AFFECT YOU.</p>
+    </div>
+
+    <nav class="header-nav" aria-label="Main navigation">
+      <button id="nav-home" class="nav-btn" type="button">Today</button>
+      <button id="nav-delegates" class="nav-btn" type="button">
+        Find Delegates
+      </button>
+      <button id="nav-contact" class="nav-btn" type="button">Contact</button>
+      <button id="nav-profile" class="nav-btn" type="button">Profile</button>
+      <button id="nav-bills" class="nav-btn" type="button">Bills</button>
+	  	  <button id="nav-votes" class="nav-btn" type="button">Votes</button>
+      <button id="nav-committees" class="nav-btn active" type="button">
+        Committees
+      </button>
+    </nav>
+  </header>
+
+  <main id="app-main">
+    <section id="committees-screen" class="screen">
+      <div class="briefing-header">
+        <p class="eyebrow">Congressional committees</p>
+        <h2>House and Senate Committees</h2>
+        <p>
+          Browse the congressional committees that review legislation,
+          hold hearings, and oversee parts of the federal government.
+        </p>
+      </div>
+
+      <section class="committee-controls" aria-label="Committee filters">
+        <button
+          class="committee-filter active"
+          type="button"
+          data-chamber="all"
+        >
+          All committees
+        </button>
+
+        <button
+          class="committee-filter"
+          type="button"
+          data-chamber="house"
+        >
+          House
+        </button>
+
+        <button
+          class="committee-filter"
+          type="button"
+          data-chamber="senate"
+        >
+          Senate
+        </button>
+
+        <button
+          class="committee-filter"
+          type="button"
+          data-chamber="joint"
+        >
+          Joint
+        </button>
+      </section>
+
+      <section id="committee-list" class="committee-list" aria-live="polite">
+        <p>Loading committees…</p>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="committees.js"></script>
+</body>
+</html>

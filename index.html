@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Freedom Almanac</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="styles.css?v=mobile2" />
+</head>
+<body>
+<aside class="sidebar">
+  <nav class="sidebar-nav">
+
+  </nav>
+
+  <section class="sidebar-section">
+    <h3>Your Delegation</h3>
+    <div id="sidebar-delegation-container">
+      <p class="muted">No address set.</p>
+    </div>
+  </section>
+</aside>
+
+  <header class="app-header">
+    <div class="header-brand">
+      <h1>Freedom Almanac</h1>
+      <p class="tagline">WHAT DID THEY DO. HOW DOES IT AFFECT YOU.</p>
+    </div>
+    <nav class="header-nav">
+      <button id="nav-home" class="nav-btn active">Today</button>
+	  <button id= "nav-delegates" class="nav-btn">Find Delegates</button>
+      <button id="nav-contact" class="nav-btn">Contact</button>
+      <button id="nav-profile" class="nav-btn">Profile</button>
+	  <button id="nav-bills" class="nav-btn">Bills</button>
+	  <button id="nav-votes" class="nav-btn">Votes</button> 
+	  <button id="nav-committees" class="nav-btn">Committees</button>
+	  
+    </nav>
+  </header>
+
+  <main id="app-main">
+    <!-- Onboarding -->
+    <section id="onboarding-screen" class="screen">
+      <h2>Welcome to Freedom Almanac</h2>
+      <p>Enter your address to find your Delegates.</p>
+    
+
+  <form id="address-form">
+    <label for="street-input">Street address</label>
+    <input
+      id="street-input"
+      type="text"
+      autocomplete="street-address"
+      placeholder="123 Main Street"
+      required
+    />
+
+    <label for="address-city-input">City</label>
+    <input
+      id="address-city-input"
+      type="text"
+      autocomplete="address-level2"
+      required
+    />
+
+    <label for="address-state-input">State</label>
+    <input
+      id="address-state-input"
+      type="text"
+      maxlength="2"
+      autocomplete="address-level1"
+      placeholder="MT"
+      required
+    />
+
+    <label for="address-zip-input">ZIP code</label>
+    <input
+      id="address-zip-input"
+      type="text"
+      inputmode="numeric"
+      maxlength="5"
+      autocomplete="postal-code"
+      required
+    />
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <p class="small-note">
+    We’ll use this only to find your members of Congress.
+  </p>
+	
+	</section>
+
+    <!-- Home / Today -->
+    <section id="home-screen" class="screen hidden">
+      <div class="briefing-header">
+        <h2>Today’s Almanac</h2>
+        <p id="briefing-date"></p>
+      </div>
+	 <div class="section-title">
+  <h3>Recently Updated Bills</h3>
+  <p class="small-note">
+    A recap of what the House and Senate did recently. 
+	</p>
+	Contains a simplified, AI-generated summary of the bill. Click View sourec to read the full bill documents.
+	
+  </p>
+</div>
+
+<div id="recent-activity" class="cards"></div>
+
+<div class="section-title">
+  <h3>Coming Up</h3>
+  <p class="small-note">
+    Upcoming House and Senate meetings and floor activity.
+  </p>
+</div>
+
+<div id="upcoming-schedule" class="cards">
+  <article class="card">
+    <p>Loading upcoming schedule…</p>
+  </article>
+</div>
+</section>
+
+    <!-- Contact -->
+    <section id="contact-screen" class="screen hidden">
+      <h2>Contact Your Members</h2>
+      <p class="small-note">Call or email your senators and representative.</p>
+      <div id="contact-list" class="cards"></div>
+    </section>
+
+   <!-- Profile -->
+<section id="profile-screen" class="screen hidden">
+  <div class="page-heading">
+    <p class="eyebrow">Your civic profile</p>
+    <h1>Your Profile</h1>
+    <p>
+      Your saved location is used to identify the federal representatives and
+      legislative information most relevant to you.
+    </p>
+  </div>
+
+  <div class="profile-layout">
+    <section class="profile-card profile-location-card">
+      <div class="profile-card-heading">
+        <div>
+          <p class="eyebrow">Saved location</p>
+          <h2>Your Address</h2>
+        </div>
+
+        <button id="edit-address-btn" class="secondary-button" type="button">
+          Edit Address
+        </button>
+      </div>
+
+      <p id="profile-address" class="profile-address">
+        No address saved yet.
+      </p>
+
+      <p class="small-note">
+        Your address is used only to identify your congressional delegation.
+      </p>
+    </section>
+
+    <section class="profile-card">
+      <div class="profile-card-heading">
+        <div>
+          <p class="eyebrow">Representation</p>
+          <h2>Your Delegation</h2>
+        </div>
+      </div>
+
+      <div id="profile-delegation-list" class="profile-delegation-list">
+        <p class="small-note">No delegation loaded yet.</p>
+      </div>
+    </section>
+
+    <section class="profile-card">
+      <div class="profile-card-heading">
+        <div>
+          <p class="eyebrow">Account data</p>
+          <h2>Privacy & Storage</h2>
+        </div>
+      </div>
+
+      <p class="profile-copy">
+        Freedom Almanac currently stores your address locally in this browser
+        so it can load the correct members of Congress when you return.
+      </p>
+
+      <button id="clear-profile-data-btn" class="danger-button" type="button">
+        Clear Saved Address
+      </button>
+    </section>
+
+    <section id="edit-address-panel" class="profile-card hidden">
+      <div class="profile-card-heading">
+        <div>
+          <p class="eyebrow">Update location</p>
+          <h2>Edit Your Address</h2>
+        </div>
+
+        <button id="cancel-edit-address-btn" class="text-button" type="button">
+          Cancel
+        </button>
+      </div>
+
+      <form id="profile-address-form">
+        <label for="profile-street-input">Street address</label>
+        <input
+          id="profile-street-input"
+          type="text"
+          autocomplete="street-address"
+          placeholder="123 Main Street"
+          required
+        />
+
+        <label for="profile-city-input">City</label>
+        <input
+          id="profile-city-input"
+          type="text"
+          autocomplete="address-level2"
+          required
+        />
+
+        <label for="profile-state-input">State</label>
+        <input
+          id="profile-state-input"
+          type="text"
+          maxlength="2"
+          autocomplete="address-level1"
+          placeholder="MT"
+          required
+        />
+
+        <label for="profile-zip-input">ZIP code</label>
+        <input
+          id="profile-zip-input"
+          type="text"
+          inputmode="numeric"
+          maxlength="5"
+          autocomplete="postal-code"
+          required
+        />
+
+        <button class="primary-button" type="submit">
+          Save Address
+        </button>
+      </form>
+    </section>
+
+    <p class="small-note profile-version">
+      Freedom Almanac v0.1 (demo)
+    </p>
+  </div>
+</section>
+  </main>
+  
+  <script type="module" src="app.js"></script>
+  
+</body>
+</html>
