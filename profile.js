@@ -8,6 +8,7 @@ let accountLoadVersion = 0;
 let subscriptionAccess = false;
 let subscriptionLoading = true;
 let checkoutBusy = false;
+let billingPortalBusy = false;
 const PROFILE_SETTINGS_KEY = "wa_profile_settings";
 const WATCHLIST_STORAGE_KEY = "wa_watchlist";
 
@@ -1539,6 +1540,13 @@ function setBillingStatus(message) {
 }
 
 function renderSubscriptionControls() {
+  const billingButton = document.getElementById("notification-manage-billing");
+  if (billingButton) {
+    billingButton.disabled = !accountUser || !accountDataReady || billingPortalBusy;
+    billingButton.textContent = billingPortalBusy
+      ? "Opening billing…" : "Manage billing / cancel subscription";
+  }
+
   const checkbox = document.getElementById(
     "notification-email-enabled"
   );
@@ -1847,6 +1855,38 @@ function setupSubscriptionListeners() {
   });
 }
 
+async function openBillingPortal() {
+  if (billingPortalBusy || !accountUser || !accountDataReady) return;
+  const userId = accountUser.id;
+  billingPortalBusy = true;
+  renderSubscriptionControls();
+  setBillingStatus("Opening secure Stripe billing…");
+  try {
+    const { data, error } = await authClient.functions.invoke(
+      "create-billing-portal", { body: {} }
+    );
+    if (error) {
+      let message = error.message;
+      if (typeof error.context?.json === "function") {
+        try { message = (await error.context.json()).error || message; } catch {}
+      }
+      throw new Error(message);
+    }
+    if (accountUser?.id !== userId) throw new Error("Your account changed. Refresh and try again.");
+    if (!data?.url) throw new Error(data?.error || "No billing URL returned.");
+    const destination = new URL(data.url);
+    if (destination.protocol !== "https:" || destination.hostname !== "billing.stripe.com") {
+      throw new Error("Unexpected billing address.");
+    }
+    window.location.assign(destination.href);
+  } catch (error) {
+    if (accountUser?.id === userId) setBillingStatus(`Could not open billing: ${error.message}`);
+  } finally {
+    billingPortalBusy = false;
+    renderSubscriptionControls();
+  }
+}
+
 function init() {
   setupNavigation();
   setupTabs();
@@ -1866,6 +1906,7 @@ function init() {
   renderNotificationPreferences();
   setupScheduledNotificationListeners();
 setupSubscriptionListeners();
+  document.getElementById("notification-manage-billing")?.addEventListener("click", openBillingPortal);
   renderSubscriptionControls();
   
   
